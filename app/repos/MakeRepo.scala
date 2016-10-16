@@ -14,7 +14,7 @@ import reactivemongo.play.json._
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait WidgetRepo {
+trait MakeRepo {
   def find()(implicit ec: ExecutionContext): Future[List[JsObject]]
 
   def select(selector: BSONDocument)(implicit ec: ExecutionContext): Future[Option[JsObject]]
@@ -26,7 +26,7 @@ trait WidgetRepo {
   def save(document: BSONDocument)(implicit ec: ExecutionContext): Future[WriteResult]
 }
 
-class WidgetRepoImpl @Inject() (reactiveMongoApi: ReactiveMongoApi) extends WidgetRepo{
+class MakeRepoImpl @Inject()(reactiveMongoApi: ReactiveMongoApi) extends MakeRepo{
 
   def collectio = reactiveMongoApi.db.collection[JSONCollection]("make")
 

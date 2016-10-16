@@ -7,22 +7,22 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller, BodyParsers}
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.bson.{BSONDocument, BSONObjectID}
-import repos.WidgetRepoImpl
+import repos.MakeRepoImpl
 
 import scala.util.Try
 
-object WidgetFields {
+object MakeFields {
   val Id = "_id"
   val Name ="name"
   val Value = "value"
 }
 
-class Widgets @Inject()(val reactiveMongoApi: ReactiveMongoApi) extends Controller
+class Make @Inject()(val reactiveMongoApi: ReactiveMongoApi) extends Controller
         with MongoController with ReactiveMongoComponents {
 
-  import controllers.WidgetFields._
+  import controllers.MakeFields._
 
-  def widgetRepo = new WidgetRepoImpl(reactiveMongoApi)
+  def widgetRepo = new MakeRepoImpl(reactiveMongoApi)
 
 
   def index = Action.async { implicit request =>
